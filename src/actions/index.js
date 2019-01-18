@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { URL, KEY} from '../util'
 export const GET_POSTS = 'GET_POSTS'
 
 export const getPosts = (posts) => (
@@ -10,7 +11,7 @@ export const getPosts = (posts) => (
 
 export function getPostsAsync() {
     return dispatch => {
-        axios.get("http://localhost:3001/posts", { headers: { 'Authorization': 'whatever-you-want' } })
+        axios.get(`${URL}posts`, { headers: { 'Authorization': KEY } })
             .then(response => {
                 dispatch(getPosts(response.data));
             })
