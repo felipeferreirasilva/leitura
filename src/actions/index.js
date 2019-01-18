@@ -3,6 +3,7 @@ import { URL, KEY } from '../util'
 // CRIA UMA CONSTATE PARA DAR NOME A ACTION, EVITA ERROS DE DIGITAÇAO
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
+export const GET_COMMENTS = 'GET_COMMENTS'
 
 // CRIA UMA ACTION ASYCRONA
 export const getPostsAsync = () => {
@@ -19,13 +20,25 @@ export const getPostsAsync = () => {
 }
 
 // ACTION ASYCRONA COM PARAMETRO
-export const getPostAsync = (id) => {
+export const getPostAsync = id => {
     return dispatch => {
         axios.get(`${URL}posts/${id}`, { headers: { 'Authorization': KEY } })
             .then(response => {
                 dispatch({
                     type: GET_POST,
                     post: response.data
+                })
+            })
+    }
+}
+
+export const getCommentsAsync = id => {
+    return dispatch => {
+        axios.get(`${URL}posts/${id}/comments`, { headers: { 'Authorization': KEY } })
+            .then(response => {
+                dispatch({
+                    type: GET_COMMENTS,
+                    comments: response.data
                 })
             })
     }

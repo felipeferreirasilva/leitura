@@ -7,7 +7,7 @@ class Post extends Component {
     state = {
         postId: this.props.match.params.id
     }
-    
+
     componentDidMount() {
         this.props.dispatch(getPostAsync(this.state.postId))
     }
@@ -21,9 +21,7 @@ class Post extends Component {
                         <hr></hr>
                         <p>{this.props.posts.body}</p>
                     </div>
-                    <div className="jumbotron">
-                        <Comments postId={this.state.postId}/>
-                    </div>
+                    <Comments postId={this.state.postId} />
                 </div>
             </div>
         )

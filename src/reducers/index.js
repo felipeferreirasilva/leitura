@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_POST } from '../actions'
+import { GET_POSTS, GET_POST, GET_COMMENTS } from '../actions'
 // O COMBINEREDUCERS PERMITE IMPLEMENTAR VARIAS STORES EM UMA
 import { combineReducers } from 'redux';
 
@@ -14,7 +14,17 @@ const posts = (state = {}, action) => {
     }
 }
 
+const comments = (state = {}, action) => {
+    switch(action.type){
+        case GET_COMMENTS:
+            return action.comments
+        default:
+            return state
+    }
+}
+
 // EXPORTA O COMBINEREDUCERS COMO STORE PRINCIPAL PASSANDO AS STORES COMO OBJETOS
 export default combineReducers({
-    posts
+    posts,
+    comments
 });

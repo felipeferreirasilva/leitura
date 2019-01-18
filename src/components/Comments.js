@@ -1,13 +1,32 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getCommentsAsync } from '../actions'
 
-class Comments extends Component{
-    render(){
-        return(
+class Comments extends Component {
+    componentDidMount() {
+        this.props.dispatch(getCommentsAsync(this.props.postId))
+    }
+
+    render() {
+        return (
             <div>
-                Comments {this.props.postId}
+                <div className="jumbotron">
+                    <h3>Comments</h3>
+                    <ul>
+                        {this.props.comments.length > 0 &&
+                            this.props.comments.map(comment => (
+                                <li key={comment.id}>{comment.body}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </div>
         )
     }
 }
 
-export default Comments
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps)(Comments)
