@@ -16,7 +16,6 @@ class Comments extends Component {
     }
 
     render() {
-        console.log(this.props.comments)
         return (
             <div>
                 <div className="jumbotron">

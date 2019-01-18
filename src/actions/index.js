@@ -5,6 +5,7 @@ export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const VOTE_POST = 'VOTE_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -48,6 +49,8 @@ export const addPost = (post) => {
     }
 }
 
+
+
 export const deletePost = (id) => {
     return dispatch => {
         axios.delete(`${URL}posts/${id}`, { headers: { 'Authorization': KEY } })
@@ -58,6 +61,19 @@ export const deletePost = (id) => {
 
                 dispatch(getPostsAsync())
             })
+    }
+}
+
+export const votePost = (id, vote) => {
+    return dispatch => {
+        axios.post(`${URL}posts/${id}`, vote, { headers: { 'Authorization': KEY } })
+        .then((response) => {
+            dispatch({
+                type: VOTE_POST
+            })
+
+            dispatch(getPostAsync(id))
+        })
     }
 }
 

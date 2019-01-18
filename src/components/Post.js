@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPostAsync, deletePost } from '../actions'
+import { getPostAsync, deletePost, votePost } from '../actions'
 import Comments from './Comments'
 import Moment from 'react-moment'
 
@@ -16,6 +16,11 @@ class Post extends Component {
     deletePost = () => {
         this.props.dispatch(deletePost(this.state.postId))
         this.props.history.push('/')
+    }
+
+    votePost = (event) => {
+        let vote = {option: event.target.value}
+        this.props.dispatch(votePost(this.state.postId, vote))
     }
 
     render() {
@@ -38,8 +43,8 @@ class Post extends Component {
 
                         <div className="text-right">
                             <hr></hr>
-                            <button className="btn btn-success btn-sm mr-1"><i className="fas fa-thumbs-up disabled"></i></button>
-                            <button className="btn btn-danger btn-sm mr-1"><i className="fas fa-thumbs-down disabled"></i></button>
+                            <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.votePost(event)} value="upVote"><i className="fas fa-thumbs-up disabled"></i></button>
+                            <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.votePost(event)} value="downVote"><i className="fas fa-thumbs-down disabled"></i></button>
                             <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>
                             <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}><i className="fas fa-trash-alt disabled"></i></button>
                         </div>

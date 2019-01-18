@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_POST, ADD_POST, DELETE_POST, GET_COMMENTS, DELETE_COMMENT, ADD_COMMENT } from '../actions'
+import { GET_POSTS, GET_POST, ADD_POST, DELETE_POST, VOTE_POST, GET_COMMENTS, DELETE_COMMENT, ADD_COMMENT } from '../actions'
 // O COMBINEREDUCERS PERMITE IMPLEMENTAR VARIAS STORES EM UMA
 import { combineReducers } from 'redux';
 
@@ -12,6 +12,8 @@ const posts = (state = {}, action) => {
         case ADD_POST:
             return state
         case DELETE_POST:
+            return state
+        case VOTE_POST:
             return state
         default:
             return state

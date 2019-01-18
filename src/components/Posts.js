@@ -12,7 +12,6 @@ class Posts extends Component {
     }
 
     render() {
-        console.log(this.props.posts)
         return (
             <div>
                 <ul className="container">
