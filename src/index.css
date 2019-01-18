@@ -5,3 +5,7 @@ body{
 ul{
     list-style-type: none;
 }
+
+.jumbotron{
+    padding: 2rem 2rem;
+}

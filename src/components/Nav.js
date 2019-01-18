@@ -12,7 +12,7 @@ const Nav = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <Link className="nav-item nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-                        <Link className="nav-item nav-link" to="/new/post">New Post</Link>
+                        <Link className="nav-item nav-link" to="/post/new">New Post</Link>
                     </div>
                 </div>
             </nav>
