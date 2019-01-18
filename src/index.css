@@ -9,3 +9,7 @@ ul{
 .jumbotron{
     padding: 2rem 2rem;
 }
+
+a{
+    text-decoration: none !important;
+}

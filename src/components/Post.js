@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPostAsync } from '../actions'
+import Comments from './Comments'
 
 class Post extends Component {
+    state = {
+        postId: this.props.match.params.id
+    }
+    
     componentDidMount() {
-        let postId = this.props.match.params.id
-        this.props.dispatch(getPostAsync(postId))
+        this.props.dispatch(getPostAsync(this.state.postId))
     }
 
     render() {
@@ -14,6 +18,11 @@ class Post extends Component {
                 <div className="container">
                     <div className="jumbotron">
                         <h2>{this.props.posts.title}</h2>
+                        <hr></hr>
+                        <p>{this.props.posts.body}</p>
+                    </div>
+                    <div className="jumbotron">
+                        <Comments postId={this.state.postId}/>
                     </div>
                 </div>
             </div>

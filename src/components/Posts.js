@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+// CONNECT PERMITE IMPORTA A STORE GLOBAL PARA DENTRO DO COMPONENT
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import {getPostsAsync} from '../actions'
 import { Link } from 'react-router-dom'
 
 class Posts extends Component {
+    // ENVIO UM DISPATCH ANTES DE GERAR O COMPONENET PARA CRIAR MINHA STORE COM OS DADOS DO SERVIDOR
     componentDidMount(){
         this.props.dispatch(getPostsAsync())
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <ul className="container">
@@ -43,8 +44,10 @@ class Posts extends Component {
     }
 }
 
+// MAPEIO MINHA STORE DENTRO DAS PROPS DO COMPONENT
 const mapStateToProps = (state) => {
     return state
 }
 
+// EXPORTO O CONNECT QUE UNE O COMPONENET COM A FUNÇAO DE MAPEAMENTO DA STORE
 export default connect(mapStateToProps)(Posts)
