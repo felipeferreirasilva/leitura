@@ -6,6 +6,7 @@ export const GET_POST = 'GET_POST'
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const VOTE_POST = 'VOTE_POST'
+export const UPDATE_POST = 'UPDATE_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -50,7 +51,11 @@ export const addPost = (post) => {
     }
 }
 
-
+export const updatePost = (postId, post) => {
+    return dispatch => {
+        axios.put(`${URL}posts/${postId}`, post, { headers: { 'Authorization': KEY } })
+    }
+}
 
 export const deletePost = (id) => {
     return dispatch => {

@@ -7,10 +7,10 @@ class NewPost extends Component {
     state = {
         id: undefined,
         timestamp: Date.now(),
-        title: undefined,
-        body: undefined,
-        author: undefined,
-        category: undefined,
+        title: '',
+        body: '',
+        author: '',
+        category: '',
         votescore: 0,
         deleted: false
     }
@@ -58,11 +58,11 @@ class NewPost extends Component {
                     <h2>New Post</h2>
                     <div className="form-group">
                         <label htmlFor="postTitle">Title</label>
-                        <input type="text" className="form-control" id="postTitle" onChange={(event) => this.onChangeTitle(event)} required></input>
+                        <input type="text" className="form-control" id="postTitle" onChange={(event) => this.onChangeTitle(event)} value={this.state.title} required></input>
                     </div>
                     <div className="form-group">
                         <label htmlFor="postCategory">Category</label>
-                        <select className="form-control" id="postCategory" onChange={(event) => this.onChangeCategory(event)} required>
+                        <select className="form-control" id="postCategory" onChange={(event) => this.onChangeCategory(event)} value={this.state.category} required>
                             <option value="" hidden >Select</option>
                             <option value="react">react</option>
                             <option value="redux">redux</option>
@@ -71,11 +71,11 @@ class NewPost extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="postContent">Content</label>
-                        <textarea className="form-control" id="postContent" rows="3" onChange={(event) => this.onChangeBody(event)} required></textarea>
+                        <textarea className="form-control" id="postContent" rows="3" onChange={(event) => this.onChangeBody(event)} value={this.state.body} required></textarea>
                     </div>
                     <div className="form-group">
                         <label htmlFor="postAuthor">Author</label>
-                        <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChangeAuthor(event)} required></input>
+                        <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChangeAuthor(event)} value={this.state.author} required></input>
                     </div>
 
                     <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Save</button>

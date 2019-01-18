@@ -30,7 +30,7 @@ class Comments extends Component {
         return (
             <div>
                 <div className="jumbotron">
-                    <h3 className="mb-3">Comments</h3>
+                    <h3 className="mb-4">Comments</h3>
                     <ul>
                         {this.props.comments.length > 0 &&
                             this.props.comments.filter(comment => comment.parentDeleted === false && comment.deleted === false).map(comment => (
@@ -42,8 +42,7 @@ class Comments extends Component {
                                     </div>
                                     <hr></hr>
                                     <li >{comment.body}</li>
-                                    <hr></hr>
-                                    <div className="text-right">
+                                    <div className="text-right mt-5">
                                         <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.upVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-up disabled"></i></button>
                                         <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.downVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-down disabled"></i></button>
                                         <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>

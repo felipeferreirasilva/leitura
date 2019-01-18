@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getPostAsync, deletePost, votePost } from '../actions'
 import Comments from './Comments'
 import Moment from 'react-moment'
+import {Link} from 'react-router-dom'
 
 class Post extends Component {
     state = {
@@ -41,11 +42,10 @@ class Post extends Component {
                         <hr></hr>
                         <p>{this.props.posts.body}</p>
 
-                        <div className="text-right">
-                            <hr></hr>
+                        <div className="text-right mt-5">
                             <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.votePost(event)} value="upVote"><i className="fas fa-thumbs-up disabled"></i></button>
                             <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.votePost(event)} value="downVote"><i className="fas fa-thumbs-down disabled"></i></button>
-                            <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>
+                            <Link to={`/post/${this.state.postId}/edit`}><button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button></Link>
                             <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}><i className="fas fa-trash-alt disabled"></i></button>
                         </div>
                     </div>

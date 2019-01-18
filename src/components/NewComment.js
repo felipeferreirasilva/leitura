@@ -7,8 +7,8 @@ class NewComment extends Component {
     state = {
         id: undefined,
         timestamp: Date.now(),
-        title: undefined,
-        body: undefined,
+        author: '',
+        body: '',
         parentDeleted: false,
         parentId: undefined,
         votescore: 0,
@@ -43,12 +43,12 @@ class NewComment extends Component {
             <form className="jumbotron">
                 <h2>New Comment</h2>
                 <div className="form-group">
-                    <label htmlFor="postContent">Content</label>
-                    <textarea className="form-control" id="postContent" rows="3" onChange={(event) => this.onChangeBody(event)} required></textarea>
+                    <label htmlFor="postContent">Comment</label>
+                    <textarea className="form-control" id="postContent" rows="3" onChange={(event) => this.onChangeBody(event)} value={this.state.body} required></textarea>
                 </div>
                 <div className="form-group">
                     <label htmlFor="postAuthor">Author</label>
-                    <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChangeAuthor(event)} required></input>
+                    <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChangeAuthor(event)} value={this.state.author} required></input>
                 </div>
 
                 <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Save</button>

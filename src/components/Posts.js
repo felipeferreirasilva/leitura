@@ -27,8 +27,6 @@ class Posts extends Component {
                                     <div className="col-sm"><i className="fas fa-star mr-2"></i>{post.voteScore}</div>
                                     <div className="col-sm"><i className="fas fa-user mr-2"></i>{post.author}</div>
                                 </div>
-                                <hr></hr>
-                                <p className="mt-3 text-justify">{post.body}</p>
                             </li>
                         ))
                     }
