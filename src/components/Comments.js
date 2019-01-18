@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCommentsAsync, deleteCommentAsync } from '../actions'
+import { getCommentsAsync, deleteCommentAsync, voteComment } from '../actions'
 import Moment from 'react-moment'
 import NewComment from './NewComment'
 
@@ -11,8 +11,19 @@ class Comments extends Component {
 
     deleteComment = (event) => {
         let commentId = event.target.value
-        let postId = this.props.postId
-        this.props.dispatch(deleteCommentAsync(commentId, postId))
+        this.props.dispatch(deleteCommentAsync(commentId, this.props.postId))
+    }
+
+    upVoteComment = (event) => {
+        let vote = {option: "upVote"}
+        let commentId = event.target.value
+        this.props.dispatch(voteComment(commentId, vote, this.props.postId))
+    }
+
+    downVoteComment = (event) => {
+        let vote = {option: "downVote"}
+        let commentId = event.target.value
+        this.props.dispatch(voteComment(commentId, vote, this.props.postId))
     }
 
     render() {
@@ -33,8 +44,8 @@ class Comments extends Component {
                                     <li >{comment.body}</li>
                                     <hr></hr>
                                     <div className="text-right">
-                                        <button className="btn btn-success btn-sm mr-1"><i className="fas fa-thumbs-up disabled"></i></button>
-                                        <button className="btn btn-danger btn-sm mr-1"><i className="fas fa-thumbs-down disabled"></i></button>
+                                        <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.upVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-up disabled"></i></button>
+                                        <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.downVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-down disabled"></i></button>
                                         <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>
                                         <button className="btn btn-dark btn-sm mr-1" onClick={(event) => this.deleteComment(event)} value={comment.id}><i className="fas fa-trash-alt disabled"></i></button>
                                     </div>

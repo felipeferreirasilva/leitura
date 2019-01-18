@@ -9,6 +9,7 @@ export const VOTE_POST = 'VOTE_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
 
 // CRIA UMA ACTION ASYCRONA
 export const getPostsAsync = () => {
@@ -67,7 +68,7 @@ export const deletePost = (id) => {
 export const votePost = (id, vote) => {
     return dispatch => {
         axios.post(`${URL}posts/${id}`, vote, { headers: { 'Authorization': KEY } })
-        .then((response) => {
+        .then(() => {
             dispatch({
                 type: VOTE_POST
             })
@@ -104,12 +105,25 @@ export const addComment = (comment, postId) => {
 export const deleteCommentAsync = (commentId, postId) => {
     return dispatch => {
         axios.delete(`${URL}comments/${commentId}`, { headers: { 'Authorization': KEY } })
-            .then(response => {
+            .then(() => {
                 dispatch({
                     type: DELETE_COMMENT
                 })
 
                 dispatch(getCommentsAsync(postId))
             })
+    }
+}
+
+export const voteComment = (commentId, vote, postId) => {
+    return dispatch => {
+        axios.post(`${URL}comments/${commentId}`, vote, { headers: { 'Authorization': KEY } })
+        .then((r) => {
+            dispatch({
+                type: VOTE_POST
+            })
+            
+            dispatch(getCommentsAsync(postId))
+        })
     }
 }
