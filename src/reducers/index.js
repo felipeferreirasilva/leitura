@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_POST, GET_COMMENTS } from '../actions'
+import { GET_POSTS, GET_POST, GET_COMMENTS, DELETE_COMMENT } from '../actions'
 // O COMBINEREDUCERS PERMITE IMPLEMENTAR VARIAS STORES EM UMA
 import { combineReducers } from 'redux';
 
@@ -18,6 +18,8 @@ const comments = (state = {}, action) => {
     switch(action.type){
         case GET_COMMENTS:
             return action.comments
+        case DELETE_COMMENT:
+            return state
         default:
             return state
     }

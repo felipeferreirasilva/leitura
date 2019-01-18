@@ -4,6 +4,8 @@ import { URL, KEY } from '../util'
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 // CRIA UMA ACTION ASYCRONA
 export const getPostsAsync = () => {
@@ -40,6 +42,25 @@ export const getCommentsAsync = id => {
                     type: GET_COMMENTS,
                     comments: response.data
                 })
+            })
+    }
+}
+
+export const addComment = (comment) => {
+    return dispatch => {
+        
+    }
+}
+
+export const deleteCommentAsync = (commentId, postId) => {
+    return dispatch => {
+        axios.delete(`${URL}comments/${commentId}`, { headers: { 'Authorization': KEY } })
+            .then(response => {
+                dispatch({
+                    type: DELETE_COMMENT
+                })
+
+                dispatch(getCommentsAsync(postId))
             })
     }
 }

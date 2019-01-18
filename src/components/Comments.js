@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCommentsAsync } from '../actions'
+import { getCommentsAsync, deleteCommentAsync } from '../actions'
 import Moment from 'react-moment'
 import NewComment from './NewComment'
 
 class Comments extends Component {
     componentDidMount() {
         this.props.dispatch(getCommentsAsync(this.props.postId))
+    }
+
+    deleteComment = (event) => {
+        let commentId = event.target.value
+        let postId = this.props.postId
+        this.props.dispatch(deleteCommentAsync(commentId, postId))
     }
 
     render() {
@@ -28,10 +34,10 @@ class Comments extends Component {
                                     <li >{comment.body}</li>
                                     <hr></hr>
                                     <div className="text-right">
-                                        <button className="btn btn-success btn-sm mr-1"><i className="fas fa-thumbs-up"></i></button>
-                                        <button className="btn btn-danger btn-sm mr-1"><i className="fas fa-thumbs-down"></i></button>
-                                        <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit"></i></button>
-                                        <button className="btn btn-dark btn-sm mr-1"><i className="fas fa-trash-alt"></i></button>
+                                        <button className="btn btn-success btn-sm mr-1"><i className="fas fa-thumbs-up disabled"></i></button>
+                                        <button className="btn btn-danger btn-sm mr-1"><i className="fas fa-thumbs-down disabled"></i></button>
+                                        <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>
+                                        <button className="btn btn-dark btn-sm mr-1" onClick={(event) => this.deleteComment(event)} value={comment.id}><i className="fas fa-trash-alt disabled"></i></button>
                                     </div>
                                 </div>
                             ))
