@@ -22,16 +22,14 @@ class Posts extends Component {
                                 <h2><Link to={`/post/${post.id}/view`}>{post.title}</Link></h2>
                                 <hr></hr>
                                 <div className="row">
-                                    <div className="col-sm-3"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{post.timestamp}</Moment></div>
-                                    <div className="col-sm-3"><i className="fas fa-tags mr-2"></i>{post.category}</div>
-                                    <div className="col-sm-3"><i className="far fa-comments mr-2"></i>{post.commentCount}</div>
-                                    <div className="col-sm-3"><i className="fas fa-star mr-2"></i>{post.voteScore}</div>
+                                    <div className="col-sm"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{post.timestamp}</Moment></div>
+                                    <div className="col-sm"><i className="fas fa-tags mr-2"></i>{post.category}</div>
+                                    <div className="col-sm"><i className="far fa-comments mr-2"></i>{post.commentCount}</div>
+                                    <div className="col-sm"><i className="fas fa-star mr-2"></i>{post.voteScore}</div>
+                                    <div className="col-sm"><i className="fas fa-user mr-2"></i>{post.author}</div>
                                 </div>
                                 <hr></hr>
                                 <p className="mt-3 text-justify">{post.body}</p>
-                                <div className="text-right mt-5">
-                                    <div className="col-sm-12 text-right mr-2"><i className="fas fa-user mr-2"></i>{post.author}</div>
-                                </div>
                             </li>
                         ))
                     }

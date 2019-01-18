@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import {URL, KEY} from '../util'
-import { getCommentsAsync } from '../actions'
+import { addComment } from '../actions'
 import { connect } from 'react-redux'
 
 class NewComment extends Component {
@@ -35,21 +33,9 @@ class NewComment extends Component {
 
     onSaveForm = (event) => {
         event.preventDefault()
-        axios.post(`${URL}comments`, this.state, { headers: { 'Authorization': KEY } })
-            .then(() => {
-                this.setState({
-                    id: undefined,
-                    timestamp: Date.now(),
-                    title: undefined,
-                    body: undefined,
-                    parentDeleted: false,
-                    parentId: undefined,
-                    votescore: 0,
-                    deleted: false
-                })
-                
-                this.props.dispatch(getCommentsAsync(this.props.postId))
-            })
+        let comment = this.state
+        let postId = this.props.postId
+        this.props.dispatch(addComment(comment, postId))
     }
 
     render() {

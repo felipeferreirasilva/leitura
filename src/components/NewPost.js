@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { URL, KEY } from '../util'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { getPostsAsync } from '../actions'
+import { addPost } from '../actions'
 
 class NewPost extends Component {
 
@@ -47,25 +45,10 @@ class NewPost extends Component {
     }
 
     onSaveForm = (event) => {
+        let post = this.state
         event.preventDefault()
-
-        axios.post(`${URL}posts`, this.state, { headers: { 'Authorization': KEY } })
-            .then(() => {
-                this.setState({
-                    id: undefined,
-                    timestamp: Date.now(),
-                    title: undefined,
-                    body: undefined,
-                    author: undefined,
-                    category: undefined,
-                    votescore: 0,
-                    deleted: false
-                })
-                
-                this.props.dispatch(getPostsAsync())
-
-                this.props.history.push('/')
-            })
+        this.props.dispatch(addPost(post))
+        this.props.history.push('/')
     }
 
     render() {

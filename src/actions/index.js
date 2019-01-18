@@ -3,6 +3,7 @@ import { URL, KEY } from '../util'
 // CRIA UMA CONSTATE PARA DAR NOME A ACTION, EVITA ERROS DE DIGITAÇAO
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST = 'GET_POST'
+export const ADD_POST = 'ADD_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -34,6 +35,18 @@ export const getPostAsync = id => {
     }
 }
 
+export const addPost = (post) => {
+    return dispatch => {
+        axios.post(`${URL}posts`, post, { headers: { 'Authorization': KEY } })
+            .then(() => {
+                dispatch({
+                    type: ADD_POST
+                })
+                dispatch(getPostsAsync())
+            })
+    }
+}
+
 export const getCommentsAsync = id => {
     return dispatch => {
         axios.get(`${URL}posts/${id}/comments`, { headers: { 'Authorization': KEY } })
@@ -46,9 +59,15 @@ export const getCommentsAsync = id => {
     }
 }
 
-export const addComment = (comment) => {
+export const addComment = (comment, postId) => {
     return dispatch => {
-        
+        axios.post(`${URL}comments`, comment, { headers: { 'Authorization': KEY } })
+            .then(() => {
+                dispatch({
+                    type: ADD_COMMENT
+                })
+                dispatch(getCommentsAsync(postId))
+            })
     }
 }
 

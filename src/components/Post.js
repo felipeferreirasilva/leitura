@@ -19,10 +19,11 @@ class Post extends Component {
                 <div className="container">
                 <div className="jumbotron">
                         <div className="row">
-                            <div className="col-sm-3"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{this.props.posts.timestamp}</Moment></div>
-                            <div className="col-sm-3"><i className="fas fa-tags mr-2"></i>{this.props.posts.category}</div>
-                            <div className="col-sm-3"><i className="far fa-comments mr-2"></i>{this.props.posts.commentCount}</div>
-                            <div className="col-sm-3"><i className="fas fa-star mr-2"></i>{this.props.posts.voteScore}</div>
+                            <div className="col-sm"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{this.props.posts.timestamp}</Moment></div>
+                            <div className="col-sm"><i className="fas fa-tags mr-2"></i>{this.props.posts.category}</div>
+                            <div className="col-sm"><i className="far fa-comments mr-2"></i>{this.props.posts.commentCount}</div>
+                            <div className="col-sm"><i className="fas fa-star mr-2"></i>{this.props.posts.voteScore}</div>
+                            <div className="col-sm"><i className="fas fa-user mr-2"></i>{this.props.posts.author}</div>
                         </div>
                     </div>
                     <div className="jumbotron">
