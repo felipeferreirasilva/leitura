@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPostAsync } from '../actions'
+import { getPostAsync, deletePost } from '../actions'
 import Comments from './Comments'
 import Moment from 'react-moment'
 
@@ -11,6 +11,11 @@ class Post extends Component {
 
     componentDidMount() {
         this.props.dispatch(getPostAsync(this.state.postId))
+    }
+
+    deletePost = () => {
+        this.props.dispatch(deletePost(this.state.postId))
+        this.props.history.push('/')
     }
 
     render() {
@@ -36,7 +41,7 @@ class Post extends Component {
                             <button className="btn btn-success btn-sm mr-1"><i className="fas fa-thumbs-up disabled"></i></button>
                             <button className="btn btn-danger btn-sm mr-1"><i className="fas fa-thumbs-down disabled"></i></button>
                             <button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button>
-                            <button className="btn btn-dark btn-sm mr-1"><i className="fas fa-trash-alt disabled"></i></button>
+                            <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}><i className="fas fa-trash-alt disabled"></i></button>
                         </div>
                     </div>
 
