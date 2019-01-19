@@ -10,19 +10,23 @@ class Posts extends Component {
     componentDidMount() {
         this.props.dispatch(getPosts())
     }
-    
+
     render() {
         return (
             <div>
                 <ul className="container">
                     {this.props.posts.length > 0 &&
-                        this.props.posts.filter(post => post.deleted === false).map(post => (
-                            <li key={post.id} className="jumbotron">
-                                <h2><Link to={`/post/${post.id}/view`}>{post.title}</Link></h2>
-                                <hr></hr>
-                                <PostDetails post={post}/>
-                            </li>
-                        ))
+                        this.props.posts.filter(post => post.deleted === false)
+                            .sort(function (a, b) {
+                                return b.voteScore - a.voteScore
+                            })
+                            .map(post => (
+                                <li key={post.id} className="jumbotron">
+                                    <h2><Link to={`/post/${post.id}/view`}>{post.title}</Link></h2>
+                                    <hr></hr>
+                                    <PostDetails post={post} />
+                                </li>
+                            ))
                     }
                 </ul>
             </div>
