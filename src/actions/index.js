@@ -8,12 +8,14 @@ export const DELETE_POST = 'DELETE_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const GET_COMMENT = 'GET_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 
 // CRIA UMA ACTION ASYCRONA
-export const getPostsAsync = () => {
+export const getPosts = () => {
     return dispatch => {
         // FAZ A REQUISIÇAO AO AXIOS E EM SEGUIDA CHAMA GERA A ACTION COM O TYPE E DADOS DO SERVIDOR
         axios.get(`${URL}posts`, { headers: { 'Authorization': KEY } })
@@ -27,7 +29,7 @@ export const getPostsAsync = () => {
 }
 
 // ACTION ASYCRONA COM PARAMETRO
-export const getPostAsync = id => {
+export const getPost = id => {
     return dispatch => {
         axios.get(`${URL}posts/${id}`, { headers: { 'Authorization': KEY } })
             .then(response => {
@@ -39,14 +41,14 @@ export const getPostAsync = id => {
     }
 }
 
-export const addPost = (post) => {
+export const addPost = post => {
     return dispatch => {
         axios.post(`${URL}posts`, post, { headers: { 'Authorization': KEY } })
             .then(() => {
                 dispatch({
                     type: ADD_POST
                 })
-                dispatch(getPostsAsync())
+                dispatch(getPosts())
             })
     }
 }
@@ -54,10 +56,15 @@ export const addPost = (post) => {
 export const updatePost = (postId, post) => {
     return dispatch => {
         axios.put(`${URL}posts/${postId}`, post, { headers: { 'Authorization': KEY } })
+        .then(() => {
+            dispatch({
+                type: UPDATE_POST
+            })
+        })
     }
 }
 
-export const deletePost = (id) => {
+export const deletePost = id => {
     return dispatch => {
         axios.delete(`${URL}posts/${id}`, { headers: { 'Authorization': KEY } })
             .then(() => {
@@ -65,7 +72,7 @@ export const deletePost = (id) => {
                     type: DELETE_POST
                 })
 
-                dispatch(getPostsAsync())
+                dispatch(getPosts())
             })
     }
 }
@@ -73,23 +80,46 @@ export const deletePost = (id) => {
 export const votePost = (id, vote) => {
     return dispatch => {
         axios.post(`${URL}posts/${id}`, vote, { headers: { 'Authorization': KEY } })
-        .then(() => {
-            dispatch({
-                type: VOTE_POST
-            })
+            .then(() => {
+                dispatch({
+                    type: VOTE_POST
+                })
 
-            dispatch(getPostAsync(id))
-        })
+                dispatch(getPost(id))
+            })
     }
 }
 
-export const getCommentsAsync = id => {
+export const getComments = id => {
     return dispatch => {
         axios.get(`${URL}posts/${id}/comments`, { headers: { 'Authorization': KEY } })
             .then(response => {
                 dispatch({
                     type: GET_COMMENTS,
                     comments: response.data
+                })
+            })
+    }
+}
+
+export const getComment = id => {
+    return dispatch => {
+        axios.get(`${URL}comments/${id}`, { headers: { 'Authorization': KEY } })
+            .then(response => {
+                dispatch({
+                    type: GET_COMMENT,
+                    comment: response.data
+                })
+            })
+    }
+}
+
+export const updateComment = (id, comment) => {
+    return dispatch => {
+        axios.put(`${URL}comments/${id}`, comment, { headers: { 'Authorization': KEY } })
+            .then(() => {
+                dispatch({
+                    type: UPDATE_COMMENT
                 })
             })
     }
@@ -102,12 +132,12 @@ export const addComment = (comment, postId) => {
                 dispatch({
                     type: ADD_COMMENT
                 })
-                dispatch(getCommentsAsync(postId))
+                dispatch(getComments(postId))
             })
     }
 }
 
-export const deleteCommentAsync = (commentId, postId) => {
+export const deleteComment = (commentId, postId) => {
     return dispatch => {
         axios.delete(`${URL}comments/${commentId}`, { headers: { 'Authorization': KEY } })
             .then(() => {
@@ -115,7 +145,7 @@ export const deleteCommentAsync = (commentId, postId) => {
                     type: DELETE_COMMENT
                 })
 
-                dispatch(getCommentsAsync(postId))
+                dispatch(getComments(postId))
             })
     }
 }
@@ -123,12 +153,12 @@ export const deleteCommentAsync = (commentId, postId) => {
 export const voteComment = (commentId, vote, postId) => {
     return dispatch => {
         axios.post(`${URL}comments/${commentId}`, vote, { headers: { 'Authorization': KEY } })
-        .then((r) => {
-            dispatch({
-                type: VOTE_POST
+            .then((r) => {
+                dispatch({
+                    type: VOTE_POST
+                })
+
+                dispatch(getComments(postId))
             })
-            
-            dispatch(getCommentsAsync(postId))
-        })
     }
 }
