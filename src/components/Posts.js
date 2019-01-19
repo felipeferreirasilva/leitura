@@ -7,6 +7,7 @@ import PostDetails from './PostDetails'
 
 class Posts extends Component {
     // ENVIO UM DISPATCH ANTES DE GERAR O COMPONENET PARA CRIAR MINHA STORE COM OS DADOS DO SERVIDOR
+
     componentDidMount() {
         this.props.dispatch(getPosts())
     }
