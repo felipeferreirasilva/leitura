@@ -53,7 +53,7 @@ class EditPost extends Component {
                         <textarea className="form-control" id="postContent" rows="3" onChange={(event) => this.onChangeBody(event)} value={this.state.body} required></textarea>
                     </div>
 
-                    <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Save</button>
+                    <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Save Post</button>
                 </form>
             </div>
         )
