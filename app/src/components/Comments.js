@@ -41,17 +41,18 @@ class Comments extends Component {
                                 .map(comment => (
                                     <div key={comment.id} className="jumbotron">
                                         <div className="row">
-                                            <div className="col-sm-4"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{comment.timestamp}</Moment></div>
-                                            <div className="col-sm-4"><i className="fas fa-star mr-2"></i>{comment.voteScore}</div>
-                                            <div className="col-sm-4"><i className="fas fa-user mr-2"></i>{comment.author}</div>
+                                            <div className="col-sm-3"><i className="fas fa-calendar-alt mr-2"></i><Moment format="DD/MM/YYYY">{comment.timestamp}</Moment></div>
+                                            <div className="col-sm-3"><i className="far fa-clock mr-2"></i><Moment format="HH:MM">{comment.timestamp}</Moment></div>
+                                            <div className="col-sm-3"><i className="fas fa-star mr-2"></i>{comment.voteScore}</div>
+                                            <div className="col-sm-3"><i className="fas fa-user mr-2"></i>{comment.author}</div>
                                         </div>
                                         <hr></hr>
                                         <li >{comment.body}</li>
                                         <div className="text-right mt-5">
-                                            <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.upVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-up disabled"></i></button>
-                                            <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.downVoteComment(event)} value={comment.id}><i className="fas fa-thumbs-down disabled"></i></button>
-                                            <Link to={`/comment/${comment.id}/edit`}><button className="btn btn-warning btn-sm mr-1"><i className="fas fa-edit disabled"></i></button></Link>
-                                            <button className="btn btn-dark btn-sm mr-1" onClick={(event) => this.deleteComment(event)} value={comment.id}><i className="fas fa-trash-alt disabled"></i></button>
+                                            <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.upVoteComment(event)} value={comment.id}>Like</button>
+                                            <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.downVoteComment(event)} value={comment.id}>Dislike</button>
+                                            <Link to={`/comment/${comment.id}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
+                                            <button className="btn btn-dark btn-sm mr-1" onClick={(event) => this.deleteComment(event)} value={comment.id}>Delete</button>
                                         </div>
                                     </div>
                                 ))

@@ -78,7 +78,7 @@ class NewPost extends Component {
                         <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChangeAuthor(event)} value={this.state.author} required></input>
                     </div>
 
-                    <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Save</button>
+                    <button type="submit" className="btn btn-primary" onClick={(event) => this.onSaveForm(event)}>Add Post</button>
                 </form>
             </div>
         )
