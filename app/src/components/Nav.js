@@ -13,6 +13,14 @@ const Nav = () => {
                     <div className="navbar-nav">
                         <Link className="nav-item nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                         <Link className="nav-item nav-link" to="/post/new">New Post</Link>
+                        <li className="nav-item dropdown">
+                            <div className="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</div>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" to="/react">React</Link>
+                                <Link className="dropdown-item" to="/redux">Redux</Link>
+                                <Link className="dropdown-item" to="/udacity">Udacity</Link>
+                            </div>
+                        </li>
                     </div>
                 </div>
             </nav>
