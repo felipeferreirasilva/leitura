@@ -14,7 +14,7 @@ const Routes = () => {
             <Switch>
                 <Route path="/" exact component={Posts} />
                 <Route path="/post/new" component={NewPost} />
-                <Route path="/error"  component={Page404}/>
+                <Route path="/error" exact component={Page404} />
                 <Route path="/:category/:id/view" component={Post} />
                 <Route path="/post/:id/edit" component={EditPost} />
                 <Route path="/comment/:commentId/edit" component={EditComment} />

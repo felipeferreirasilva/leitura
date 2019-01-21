@@ -7,7 +7,15 @@ import PostDetails from './PostDetails'
 class PostsByCategory extends Component {
 
     componentDidMount() {
-        this.props.dispatch(getPosts())
+        let cat = this.props.match.params.category
+        switch (cat) {
+            case "react":
+            case "redux":
+            case "udacity":
+                return this.props.dispatch(getPosts())
+            default:
+                return this.props.history.push('/error')
+        }
     }
 
     render() {
@@ -26,7 +34,9 @@ class PostsByCategory extends Component {
                                     <PostDetails post={post} />
                                 </li>
                             ))
+
                     }
+
                 </ul>
             </div>
         )

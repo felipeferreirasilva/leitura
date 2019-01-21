@@ -37,6 +37,9 @@ export const getPost = id => {
                     type: GET_POST,
                     post: response.data
                 })
+            }).catch(error => {
+                window.location.href = "/error";
+                console.log(error)
             })
     }
 }
