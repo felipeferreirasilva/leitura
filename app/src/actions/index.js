@@ -132,6 +132,7 @@ export const addComment = (comment, postId) => {
                 dispatch({
                     type: ADD_COMMENT
                 })
+                dispatch(getPost(postId))
                 dispatch(getComments(postId))
             })
     }
@@ -144,7 +145,7 @@ export const deleteComment = (commentId, postId) => {
                 dispatch({
                     type: DELETE_COMMENT
                 })
-
+                dispatch(getPost(postId))
                 dispatch(getComments(postId))
             })
     }
