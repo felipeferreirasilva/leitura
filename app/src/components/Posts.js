@@ -23,7 +23,7 @@ class Posts extends Component {
                             })
                             .map(post => (
                                 <li key={post.id} className="jumbotron">
-                                    <h2><Link to={`/post/${post.id}/view`}>{post.title}</Link></h2>
+                                    <h2><Link to={`/${post.category}/${post.id}/view`}>{post.title}</Link></h2>
                                     <hr></hr>
                                     <PostDetails post={post} />
                                 </li>

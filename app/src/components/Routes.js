@@ -12,10 +12,10 @@ const Routes = () => {
         <div>
             <Route path="/" exact component={Posts}/>
             <Route path="/post/new" component={NewPost}/>
-            <Route path="/post/:id/view" component={Post}/>
+            <Route path="/:category/:id/view" component={Post}/>
             <Route path="/post/:id/edit" component={EditPost}/>
             <Route path="/comment/:commentId/edit" component={EditComment}/>
-            <Route path="/category/:category" component={PostsByCategory}/>
+            <Route path="/:category" component={PostsByCategory}/>
         </div>
     )
 }
