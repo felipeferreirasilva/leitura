@@ -32,10 +32,12 @@ class NewComment extends Component {
     }
 
     onSaveForm = (event) => {
-        event.preventDefault()
-        let comment = this.state
-        let postId = this.props.postId
-        this.props.dispatch(addComment(comment, postId))
+        if (this.state.body !== '' && this.state.author !== '') {
+            let comment = this.state
+            let postId = this.props.postId
+            this.props.dispatch(addComment(comment, postId))
+            event.preventDefault()
+        }
     }
 
     render() {

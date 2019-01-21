@@ -45,10 +45,13 @@ class NewPost extends Component {
     }
 
     onSaveForm = (event) => {
-        let post = this.state
-        event.preventDefault()
-        this.props.dispatch(addPost(post))
-        this.props.history.push('/')
+        if (this.state.title !== '' && this.state.body !== '' && this.state.author !== '' && this.state.category !== '') {
+            let post = this.state
+            this.props.dispatch(addPost(post))
+            this.props.history.push('/')
+            event.preventDefault()
+        }
+        
     }
 
     render() {
