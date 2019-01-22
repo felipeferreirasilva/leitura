@@ -25,7 +25,6 @@ class Post extends Component {
     }
 
     render() {
-        console.log(this.props.posts.length)
         return (
             <div>
                 {this.props.posts.deleted === false &&

@@ -33,13 +33,17 @@ export const getPost = id => {
     return dispatch => {
         axios.get(`${URL}posts/${id}`, { headers: { 'Authorization': KEY } })
             .then(response => {
-                dispatch({
-                    type: GET_POST,
-                    post: response.data
-                })
+                if (response.data.id !== undefined) {
+                    dispatch({
+                        type: GET_POST,
+                        post: response.data
+                    })
+                } else {
+                    window.location.href = "/error";
+                }
+
             }).catch(error => {
                 window.location.href = "/error";
-                console.log(error)
             })
     }
 }
@@ -59,11 +63,11 @@ export const addPost = post => {
 export const updatePost = (postId, post) => {
     return dispatch => {
         axios.put(`${URL}posts/${postId}`, post, { headers: { 'Authorization': KEY } })
-        .then(() => {
-            dispatch({
-                type: UPDATE_POST
+            .then(() => {
+                dispatch({
+                    type: UPDATE_POST
+                })
             })
-        })
     }
 }
 
