@@ -25,25 +25,28 @@ class Post extends Component {
     }
 
     render() {
+        console.log(this.props.posts.length)
         return (
             <div>
-                <div className="container">
-                    <div className="jumbotron">
-                        <PostDetails post={this.props.posts} />
-                    </div>
-                    <div className="jumbotron">
-                        <h2>{this.props.posts.title}</h2>
-                        <hr></hr>
-                        <p>{this.props.posts.body}</p>
-                        <div className="text-right mt-5">
-                            <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.votePost(event)} value="upVote">Like</button>
-                            <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.votePost(event)} value="downVote">Dislike</button>
-                            <Link to={`/post/${this.state.postId}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
-                            <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}>Delete</button>
+                {this.props.posts.deleted === false &&
+                    <div className="container">
+                        <div className="jumbotron">
+                            <PostDetails post={this.props.posts} />
                         </div>
+                        <div className="jumbotron">
+                            <h2>{this.props.posts.title}</h2>
+                            <hr></hr>
+                            <p>{this.props.posts.body}</p>
+                            <div className="text-right mt-5">
+                                <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.votePost(event)} value="upVote">Like</button>
+                                <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.votePost(event)} value="downVote">Dislike</button>
+                                <Link to={`/post/${this.state.postId}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
+                                <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}>Delete</button>
+                            </div>
+                        </div>
+                        <Comments postId={this.state.postId} />
                     </div>
-                    <Comments postId={this.state.postId} />
-                </div>
+                }
             </div>
         )
     }
