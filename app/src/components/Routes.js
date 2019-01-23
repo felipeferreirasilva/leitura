@@ -13,12 +13,12 @@ const Routes = () => {
         <div>
             <Switch>
                 <Route path="/" exact component={Posts} />
-                <Route path="/post/new" component={NewPost} />
+                <Route path="/post/new" exact component={NewPost} />
                 <Route path="/error" exact component={Page404} />
                 <Route path="/:category" exact component={PostsByCategory} />
                 <Route path="/:category/:id" exact component={Post} />
-                <Route path="/:category/:id/edit"  component={EditPost} />
-                <Route path="/:category/:id/:comment/edit" component={EditComment} />
+                <Route path="/:category/:id/edit" exact component={EditPost} />
+                <Route path="/:category/:id/:comment/edit" exact component={EditComment} />
                 
                 <Route component={Page404} />
             </Switch>

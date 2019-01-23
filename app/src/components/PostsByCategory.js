@@ -29,7 +29,7 @@ class PostsByCategory extends Component {
                             })
                             .map(post => (
                                 <li key={post.id} className="jumbotron">
-                                    <h2><Link to={`/post/${post.id}/view`}>{post.title}</Link></h2>
+                                    <h2><Link to={`/${this.props.match.params.category}/${post.id}`}>{post.title}</Link></h2>
                                     <hr></hr>
                                     <PostDetails post={post} />
                                 </li>
