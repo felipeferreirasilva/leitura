@@ -1,5 +1,5 @@
 ### Description
-Readable was created for an Udacity React Nanodegree Project, it shares the most important conceptions on a web application. 
+Readable was created for an Udacity React Nanodegree Project, it shows the most important conceptions on a web application. 
 
 ### Technologies
 Readable utilizes React and Redux for the front-end app and Node for the Back-end server.
