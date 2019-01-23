@@ -13,6 +13,8 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const GET_CATEGORIESPAGE = 'GET_CATEGORIESPAGE'
 
 // CRIA UMA ACTION ASYCRONA
 export const getPosts = () => {
@@ -23,6 +25,34 @@ export const getPosts = () => {
                 dispatch({
                     type: GET_POSTS,
                     posts: response.data
+                })
+            })
+    }
+}
+
+export const getCategoriesPage = path => {
+    return dispatch => {
+        axios.get(`${URL}categories`, { headers: { 'Authorization': KEY } })
+            .then(response => {
+                if (response.data.categories.filter(c => c.name === path).length > 0) {
+                    dispatch({
+                        type: GET_CATEGORIESPAGE,
+                        categories: response.data
+                    })
+                } else {
+                    window.location.href = "/error";
+                }
+            })
+    }
+}
+
+export const getCategories = () => {
+    return dispatch => {
+        axios.get(`${URL}categories`, { headers: { 'Authorization': KEY } })
+            .then(response => {
+                dispatch({
+                    type: GET_CATEGORIES,
+                    categories: response.data
                 })
             })
     }
@@ -84,15 +114,18 @@ export const deletePost = id => {
     }
 }
 
-export const votePost = (id, vote) => {
+export const votePost = (id, vote, path) => {
     return dispatch => {
         axios.post(`${URL}posts/${id}`, vote, { headers: { 'Authorization': KEY } })
             .then(() => {
                 dispatch({
                     type: VOTE_POST
                 })
-
-                dispatch(getPost(id))
+                if (path === '/') {
+                    dispatch(getPosts())
+                } else {
+                    dispatch(getPost(id))
+                }
             })
     }
 }

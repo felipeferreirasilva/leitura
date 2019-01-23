@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getPosts } from '../actions'
 import { Link } from 'react-router-dom'
 import PostDetails from './PostDetails'
+import PostActions from './PostActions'
 
 class Posts extends Component {
     // ENVIO UM DISPATCH ANTES DE GERAR O COMPONENET PARA CRIAR MINHA STORE COM OS DADOS DO SERVIDOR
@@ -26,6 +27,7 @@ class Posts extends Component {
                                     <h2><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></h2>
                                     <hr></hr>
                                     <PostDetails post={post} />
+                                    <PostActions post={post} history={this.props.history} />
                                 </li>
                             ))
                     }

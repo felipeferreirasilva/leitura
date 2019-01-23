@@ -18,8 +18,13 @@ To install and start the app, run the following commands in this directory:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
+Runs the app.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# Using the API Server
+
+To install and start the API server, run the following commands in this directory:
+
+* `npm install`
+* `node server`
+
