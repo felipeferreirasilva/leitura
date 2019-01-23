@@ -7,7 +7,8 @@ import PostDetails from './PostDetails'
 
 class Post extends Component {
     state = {
-        postId: this.props.match.params.id
+        postId: this.props.match.params.id,
+        postCategory: this.props.match.params.category
     }
 
     componentDidMount() {
@@ -39,7 +40,7 @@ class Post extends Component {
                             <div className="text-right mt-5">
                                 <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.votePost(event)} value="upVote">Like</button>
                                 <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.votePost(event)} value="downVote">Dislike</button>
-                                <Link to={`/post/${this.state.postId}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
+                                <Link to={`/${this.state.postCategory}/${this.state.postId}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
                                 <button className="btn btn-dark btn-sm mr-1" onClick={this.deletePost}>Delete</button>
                             </div>
                         </div>

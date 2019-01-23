@@ -51,7 +51,7 @@ class Comments extends Component {
                                         <div className="text-right mt-5">
                                             <button className="btn btn-success btn-sm mr-1" onClick={(event) => this.upVoteComment(event)} value={comment.id}>Like</button>
                                             <button className="btn btn-danger btn-sm mr-1" onClick={(event) => this.downVoteComment(event)} value={comment.id}>Dislike</button>
-                                            <Link to={`/comment/${comment.id}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
+                                            <Link to={`/${this.props.posts.category}/${this.props.postId}/${comment.id}/edit`}><button className="btn btn-primary btn-sm mr-1">Edit</button></Link>
                                             <button className="btn btn-dark btn-sm mr-1" onClick={(event) => this.deleteComment(event)} value={comment.id}>Delete</button>
                                         </div>
                                     </div>

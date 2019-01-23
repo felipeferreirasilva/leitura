@@ -117,6 +117,8 @@ export const getComment = id => {
                     type: GET_COMMENT,
                     comment: response.data
                 })
+            }).catch(error => {
+                console.log(error, "ERRO NO SERVER")
             })
     }
 }

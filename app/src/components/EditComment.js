@@ -10,12 +10,12 @@ class EditComment extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getComment(this.props.match.params.commentId))
+        this.props.dispatch(getComment(this.props.match.params.comment))
     }
 
     componentDidMount() {
         this.setState({
-            body: this.props.comments.filter(c => c.id === this.props.match.params.commentId)[0].body
+            body: this.props.comments.filter(c => c.id === this.props.match.params.comment)[0].body
         })
     }
 
@@ -28,8 +28,8 @@ class EditComment extends Component {
 
     onSaveForm = (event) => {
         event.preventDefault()
-        this.props.dispatch(updateComment(this.props.match.params.commentId, this.state))
-        this.props.history.push(`/post/${this.props.posts.id}/view`)
+        this.props.dispatch(updateComment(this.props.match.params.comment, this.state))
+        this.props.history.push(`/${this.props.match.params.category}/${this.props.posts.id}`)
     }
 
     render() {

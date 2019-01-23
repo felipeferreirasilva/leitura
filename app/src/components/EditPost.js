@@ -36,7 +36,7 @@ class EditPost extends Component {
     onSaveForm = (event) => {
         event.preventDefault()
         this.props.dispatch(updatePost(this.props.match.params.id, this.state))
-        this.props.history.push(`/post/${this.props.match.params.id}/view`)
+        this.props.history.push(`/${this.props.match.params.category}/${this.props.match.params.id}`)
     }
 
     render() {

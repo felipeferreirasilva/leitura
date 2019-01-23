@@ -15,10 +15,11 @@ const Routes = () => {
                 <Route path="/" exact component={Posts} />
                 <Route path="/post/new" component={NewPost} />
                 <Route path="/error" exact component={Page404} />
-                <Route path="/:category/:id/view" component={Post} />
-                <Route path="/post/:id/edit" component={EditPost} />
-                <Route path="/comment/:commentId/edit" component={EditComment} />
-                <Route path="/:category" component={PostsByCategory} />
+                <Route path="/:category" exact component={PostsByCategory} />
+                <Route path="/:category/:id" exact component={Post} />
+                <Route path="/:category/:id/edit"  component={EditPost} />
+                <Route path="/:category/:id/:comment/edit" component={EditComment} />
+                
                 <Route component={Page404} />
             </Switch>
         </div>
